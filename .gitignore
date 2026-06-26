@@ -42,3 +42,6 @@ Thumbs.db
 
 # TypeScript build cache
 *.tsbuildinfo
+
+# Vendored agent skill bodies (kept local; skills-lock.json is the manifest)
+.agents/
