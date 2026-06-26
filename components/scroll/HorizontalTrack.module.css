@@ -1,0 +1,10 @@
+.viewport { height: 100vh; overflow: hidden; }
+.track { display: flex; height: 100vh; will-change: transform; }
+.track > section { flex: 0 0 100vw; min-height: 100vh; height: 100vh; }
+
+/* Reduced-motion / no-JS fallback: stack vertically. */
+@media (prefers-reduced-motion: reduce) {
+  .viewport { height: auto; overflow: visible; }
+  .track { display: block; height: auto; }
+  .track > section { flex: none; width: 100%; height: auto; min-height: 100vh; }
+}
