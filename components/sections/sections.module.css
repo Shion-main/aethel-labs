@@ -3,6 +3,11 @@
 .headline { font-size: clamp(34px, 6vw, 72px); line-height: 1.08; letter-spacing: -0.02em; white-space: pre-line; font-weight: 700; text-wrap: balance; }
 .statement { font-size: clamp(24px, 3.4vw, 44px); line-height: 1.24; letter-spacing: -0.01em; font-weight: 600; max-width: 26ch; text-wrap: balance; }
 
+/* Ethos (Pitch) rides ABOVE Services so its solid panel covers Services, which
+   sits pinned behind it and is uncovered as Ethos slides off to the left. */
+:global(#pitch) { z-index: 3; }
+:global(#services) { z-index: 2; }
+
 /* Pitch section background — SOLID opaque panel (covers the mood gradient) */
 .pitchBg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; background: #0b0b0d; }
 .pitchBg::before {
