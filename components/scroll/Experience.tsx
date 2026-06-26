@@ -4,6 +4,7 @@ import { SmoothScroll } from "./SmoothScroll";
 import { HorizontalTrack } from "./HorizontalTrack";
 import { MoodBackground } from "./MoodBackground";
 import { ProgressContext } from "./ProgressContext";
+import { SideNav } from "@/components/nav/SideNav";
 
 export function Experience({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState(0);
@@ -12,6 +13,7 @@ export function Experience({ children }: { children: ReactNode }) {
       <ProgressContext.Provider value={progress}>
         <MoodBackground progress={progress} />
         <HorizontalTrack onProgress={setProgress}>{children}</HorizontalTrack>
+        <SideNav />
       </ProgressContext.Provider>
     </SmoothScroll>
   );
