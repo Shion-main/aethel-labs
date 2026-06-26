@@ -39,3 +39,6 @@ Thumbs.db
 
 # Claude Code agent tooling (kept local, not versioned with the website)
 .claude/
+
+# TypeScript build cache
+*.tsbuildinfo
