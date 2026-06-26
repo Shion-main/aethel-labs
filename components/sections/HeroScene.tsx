@@ -22,16 +22,19 @@ type Shard = {
   s: number; // rest scale
   z: number; // 2 = behind text, 4 = in front of text (sweeps over it)
   blur: number;
+  frost: boolean; // real backdrop-filter (costly) — reserve for the two front shards
 };
 
 // Rest positions all sit to the right of / above / below the left-weighted
 // headline (clear of the text). As they fly to the centre assembly point the
-// two z:4 shards sweep leftward across the headline.
+// two z:4 shards sweep leftward across the headline. Only the two FRONT shards
+// carry a backdrop-filter (the glass-over-text depth); the back two use the
+// translucent gradient alone — backdrop-filter is costly on the LCP hero.
 const SHARDS: Shard[] = [
-  { id: "bar", src: "/brand/parts/part-bar.png", x: 8, y: -36, r: -14, s: 1.14, z: 2, blur: 4 },
-  { id: "blade", src: "/brand/parts/part-blade.png", x: 40, y: -8, r: 18, s: 1.22, z: 4, blur: 9 },
-  { id: "leg", src: "/brand/parts/part-leg.png", x: 18, y: 38, r: 13, s: 1.18, z: 2, blur: 5 },
-  { id: "counter", src: "/brand/parts/part-counter.png", x: 52, y: 12, r: -22, s: 1.3, z: 4, blur: 10 },
+  { id: "bar", src: "/brand/parts/part-bar.png", x: 8, y: -36, r: -14, s: 1.14, z: 2, blur: 4, frost: false },
+  { id: "blade", src: "/brand/parts/part-blade.png", x: 40, y: -8, r: 18, s: 1.22, z: 4, blur: 9, frost: true },
+  { id: "leg", src: "/brand/parts/part-leg.png", x: 18, y: 38, r: 13, s: 1.18, z: 2, blur: 5, frost: false },
+  { id: "counter", src: "/brand/parts/part-counter.png", x: 52, y: 12, r: -22, s: 1.3, z: 4, blur: 10, frost: true },
 ];
 
 const BUILD_END = 0.038; // assemble early, while the hero is still front-and-centre
@@ -76,8 +79,8 @@ export function HeroScene({ children }: { children: ReactNode }) {
                 maskImage: `url(${sh.src})`,
                 transform: `translate(${tx}vw, ${ty}vh) rotate(${rot}deg) scale(${sc})`,
                 opacity: shardOpacity,
-                backdropFilter: `blur(${sh.blur}px) saturate(150%)`,
-                WebkitBackdropFilter: `blur(${sh.blur}px) saturate(150%)`,
+                backdropFilter: sh.frost ? `blur(${sh.blur}px) saturate(150%)` : undefined,
+                WebkitBackdropFilter: sh.frost ? `blur(${sh.blur}px) saturate(150%)` : undefined,
                 zIndex: sh.z,
               }}
             />

@@ -7,6 +7,8 @@
   /* clear the fixed sidebar on the right so content never slides under it */
   padding-right: max(8vw, 96px);
   color: var(--surface-text);
+  /* smooths the per-section text-colour change (driven discretely, not per-frame) */
+  transition: color 400ms ease;
 }
 .light { color: var(--ink); }
 .inner { width: 100%; max-width: var(--maxw); margin: 0 auto; }

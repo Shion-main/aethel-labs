@@ -9,10 +9,9 @@
 .pane2 {
   position: absolute;
   border-radius: 36px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(199, 93, 58, 0.05));
-  backdrop-filter: blur(34px) saturate(120%);
-  -webkit-backdrop-filter: blur(34px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  /* translucent gradient instead of backdrop-filter — same depth, far cheaper */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(199, 93, 58, 0.06) 60%, rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.07);
   z-index: 1;
   will-change: transform;
   pointer-events: none;

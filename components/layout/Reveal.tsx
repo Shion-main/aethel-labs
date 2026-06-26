@@ -9,13 +9,14 @@ export function Reveal({ children, delay = 0 }: { children: ReactNode; delay?: n
     const el = ref.current;
     if (!el) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return; // content visible by default; no motion
+    if (reduce || typeof IntersectionObserver === "undefined") return; // visible by default
+    const reveal = () => gsap.to(el, { opacity: 1, y: 0, duration: 0.9, delay, ease: "power2.out" });
     gsap.set(el, { opacity: 0, y: 40 });
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            gsap.to(el, { opacity: 1, y: 0, duration: 0.9, delay, ease: "power2.out" });
+            reveal();
             io.unobserve(e.target);
           }
         }
@@ -23,7 +24,13 @@ export function Reveal({ children, delay = 0 }: { children: ReactNode; delay?: n
       { threshold: 0.2 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    // Safety net: never let content stay hidden if the observer never fires
+    // (inactive tab, headless render). Reveal regardless after a short wait.
+    const fallback = window.setTimeout(reveal, 1600);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [delay]);
   return <div ref={ref}>{children}</div>;
 }
