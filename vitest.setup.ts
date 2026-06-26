@@ -15,3 +15,18 @@ if (!window.matchMedia) {
     dispatchEvent: vi.fn(),
   }));
 }
+
+// jsdom doesn't implement IntersectionObserver — stub it for component tests.
+class MockIntersectionObserver {
+  root = null;
+  rootMargin = "";
+  thresholds: number[] = [];
+  constructor(_cb: IntersectionObserverCallback, _opts?: IntersectionObserverInit) {}
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords(): IntersectionObserverEntry[] { return []; }
+}
+if (!("IntersectionObserver" in globalThis)) {
+  (globalThis as unknown as { IntersectionObserver: typeof MockIntersectionObserver }).IntersectionObserver = MockIntersectionObserver;
+}

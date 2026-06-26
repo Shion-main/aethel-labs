@@ -1,22 +1,25 @@
 import { Section } from "@/components/layout/Section";
 import { content } from "@/lib/content";
 import { LogoBuild } from "@/components/brand/LogoBuild";
+import { Reveal } from "@/components/layout/Reveal";
 import s from "./sections.module.css";
 
 export function Hero() {
   const { eyebrow, headline, sub, ctas } = content.hero;
   return (
     <Section id="hero">
-      <div>
-        <p className={s.eyebrow}>{eyebrow}</p>
-        <h1 className={s.headline}>{headline}</h1>
-        <p className={s.sub}>{sub}</p>
-        <div className={s.ctas}>
-          {ctas.map((c) => (
-            <a key={c.label} href={c.href} className={`${s.btn} ${c.variant === "primary" ? s.primary : s.ghost}`}>{c.label}</a>
-          ))}
+      <Reveal>
+        <div>
+          <p className={s.eyebrow}>{eyebrow}</p>
+          <h1 className={s.headline}>{headline}</h1>
+          <p className={s.sub}>{sub}</p>
+          <div className={s.ctas}>
+            {ctas.map((c) => (
+              <a key={c.label} href={c.href} className={`${s.btn} ${c.variant === "primary" ? s.primary : s.ghost}`}>{c.label}</a>
+            ))}
+          </div>
         </div>
-      </div>
+      </Reveal>
       <LogoBuild mode="2d" />
     </Section>
   );
