@@ -30,11 +30,11 @@
 .shard {
   position: absolute;
   top: 50%;
-  left: 66%;
-  width: min(62vh, 48vw);
-  height: min(62vh, 48vw);
-  margin-top: calc(min(62vh, 48vw) / -2);
-  margin-left: calc(min(62vh, 48vw) / -2);
+  left: 52%;
+  width: min(56vh, 42vw);
+  height: min(56vh, 42vw);
+  margin-top: calc(min(56vh, 42vw) / -2);
+  margin-left: calc(min(56vh, 42vw) / -2);
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -50,10 +50,12 @@
 .resolved {
   position: absolute;
   top: 50%;
-  left: 66%;
-  width: min(52vw, 660px);
+  /* the mark sits at ~25% from the left of the full lockup; offset so that mark
+     lands on the shard-assembly point (56% / 50%) */
+  left: 52%;
+  width: min(58vw, 720px);
   height: auto;
-  transform: translate(-50%, -50%);
+  transform: translate(-38%, -50%);
   z-index: 3;
   pointer-events: none;
   will-change: opacity;
