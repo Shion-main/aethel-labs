@@ -20,7 +20,13 @@
 }
 
 .home { background: none; border: none; cursor: pointer; color: inherit; }
-.glyph { font-size: 22px; font-weight: 800; line-height: 1; }
+.glyph {
+  display: block;
+  width: 26px;
+  height: 26px;
+  color: var(--surface-accent, #c75d3a);
+  transition: color 200ms linear;
+}
 
 .labelWrap { height: 150px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .label {

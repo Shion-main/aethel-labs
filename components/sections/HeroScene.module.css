@@ -1,0 +1,92 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ambient frosted depth panes */
+.pane1,
+.pane2 {
+  position: absolute;
+  border-radius: 36px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(199, 93, 58, 0.05));
+  backdrop-filter: blur(34px) saturate(120%);
+  -webkit-backdrop-filter: blur(34px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 1;
+  will-change: transform;
+  pointer-events: none;
+}
+.pane1 { width: 40vw; height: 54vh; left: 3vw; top: 16vh; }
+.pane2 { width: 32vw; height: 38vh; right: 5vw; bottom: 12vh; }
+
+/* the shard + resolved-logo region, anchored right-of-centre */
+.stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shard {
+  position: absolute;
+  top: 50%;
+  left: 66%;
+  width: min(62vh, 48vw);
+  height: min(62vh, 48vw);
+  margin-top: calc(min(62vh, 48vw) / -2);
+  margin-left: calc(min(62vh, 48vw) / -2);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.26), rgba(199, 93, 58, 0.18) 55%, rgba(255, 255, 255, 0.04));
+  filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.32));
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.resolved {
+  position: absolute;
+  top: 50%;
+  left: 66%;
+  width: min(52vw, 660px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* the headline / copy layer, between the back shards (z2) and front shards (z4) */
+.mid {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  padding: 6vh 8vw;
+  pointer-events: none;
+}
+.mid :global(a),
+.mid :global(button) {
+  pointer-events: auto;
+}
+.midInner {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+@media (max-width: 820px) {
+  .shard { left: 50%; width: min(64vw, 360px); height: min(64vw, 360px);
+    margin-top: calc(min(64vw, 360px) / -2); margin-left: calc(min(64vw, 360px) / -2); }
+  .resolved { left: 50%; width: 74vw; }
+  .mid { align-items: flex-start; padding-top: 16vh; }
+  .pane1, .pane2 { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shard { display: none; }
+}

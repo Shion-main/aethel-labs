@@ -37,7 +37,15 @@ export function SideNav() {
   return (
     <nav className={styles.sidebar} aria-label="Section navigation">
       <button className={styles.home} onClick={() => goTo(0)} aria-label="Back to top">
-        <span className={styles.glyph}>Æ</span>
+        <svg className={styles.glyph} viewBox="0 0 5122 5122" aria-hidden focusable="false">
+          <path d="M2775.07 2746.5L2977.68 2401.5L3339 2605.95L2775.07 2746.5Z" fill="currentColor" />
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M3307 1266H565V1678H896.573L2234.5 2444L2437.64 2092L1720.57 1678H2775.07L1523 3846.64H1998.74L1999.07 3846.06L2802.3 3855.86L2234.5 3522L3307 1691.5L3818.5 1987.86H4557.3L3307 1266Z"
+            fill="currentColor"
+          />
+        </svg>
       </button>
 
       <div className={styles.labelWrap} aria-hidden>
