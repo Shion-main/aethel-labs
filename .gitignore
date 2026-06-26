@@ -36,3 +36,6 @@ Thumbs.db
 
 # Claude Code local settings (machine-specific)
 .claude/settings.local.json
+
+# Claude Code agent tooling (kept local, not versioned with the website)
+.claude/
