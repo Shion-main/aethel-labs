@@ -7,7 +7,7 @@ export function Pitch() {
   return (
     <Section id="pitch">
       <Reveal>
-        <h2 className={s.headline} style={{ maxWidth: "20ch" }}>{content.pitch}</h2>
+        <h2 className={s.statement}>{content.pitch}</h2>
       </Reveal>
     </Section>
   );

@@ -4,6 +4,8 @@
   display: flex;
   align-items: center;
   padding: 6vh 8vw;
+  /* clear the fixed sidebar on the right so content never slides under it */
+  padding-right: max(8vw, 96px);
   color: var(--surface-text);
 }
 .light { color: var(--ink); }
