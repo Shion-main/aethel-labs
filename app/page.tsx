@@ -1,3 +1,4 @@
+import { Experience } from "@/components/scroll/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Pitch } from "@/components/sections/Pitch";
 import { Services } from "@/components/sections/Services";
@@ -11,9 +12,9 @@ import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main>
+    <Experience>
       <Hero /><Pitch /><Services /><Frame /><Work />
       <Process /><Packages /><About /><Contact /><Footer />
-    </main>
+    </Experience>
   );
 }

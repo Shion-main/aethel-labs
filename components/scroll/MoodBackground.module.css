@@ -1,0 +1,10 @@
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(120% 130% at var(--glow-x, 20%) 50%,
+              var(--bg-core, #c75d3a) 0%,
+              color-mix(in srgb, var(--bg-core) 30%, var(--bg-edge)) 42%,
+              var(--bg-edge, #0a1a2f) 82%);
+  transition: background 120ms linear;
+}
