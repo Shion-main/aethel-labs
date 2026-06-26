@@ -1,12 +1,14 @@
 import { Section } from "@/components/layout/Section";
 import { content } from "@/lib/content";
 import { Reveal } from "@/components/layout/Reveal";
+import { WipePanel } from "./WipePanel";
 import s from "./sections.module.css";
 
 export function Services() {
   const { eyebrow, heading, items } = content.services;
   return (
     <Section id="services">
+      <WipePanel start={1 / 9} end={2 / 9} color="#0a1a2f" />
       <Reveal>
         <div>
           <p className={s.eyebrow}>{eyebrow}</p>
