@@ -1,0 +1,9 @@
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6vh 8vw;
+  color: var(--surface-text);
+}
+.light { color: var(--ink); }
+.inner { width: 100%; max-width: var(--maxw); margin: 0 auto; }
