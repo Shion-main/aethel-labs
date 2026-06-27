@@ -41,19 +41,6 @@
 }
 .ctas { display: flex; gap: var(--space-3); margin-top: var(--space-6); flex-wrap: wrap; }
 
-/* ---- Ethos (Pitch) blocking panel ---- */
-:global(#pitch) { z-index: 3; }
-:global(#services) { z-index: 2; }
-.pitchBg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; background: #0b0b0d; }
-.pitchBg::before {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(58% 80% at 24% 60%, rgba(199, 93, 58, 0.14), transparent 68%);
-}
-.pitchWatermark {
-  position: absolute; left: -8vw; bottom: -10vh; width: 46vw; max-width: 660px;
-  opacity: 0.06; filter: blur(1px);
-}
-
 /* ---- Services ---- */
 .serviceGrid {
   margin-top: var(--space-6); display: grid;
