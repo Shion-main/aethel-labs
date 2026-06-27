@@ -1,29 +1,263 @@
+/* ============================================================================
+   Aethel Labs — design tokens (ported from the Aethel Labs Design System)
+   Phase 0: additive vocabulary + fonts. The live mood vars and a few legacy
+   aliases are preserved so the existing engine keeps working; the warm-paper
+   surface flip happens in Phase 1.
+   ========================================================================== */
+
 :root {
-  /* Brand */
-  --ember: #c75d3a;
+  /* ---- Brand primitives — Ember (warm rust) ---- */
+  --ember-50:  #FBEEE7;
+  --ember-100: #F6DDD0;
+  --ember-200: #EBBBA2;
+  --ember-300: #E09C7E;
+  --ember-400: #D67955;
+  --ember-500: #C75D3A; /* BRAND EMBER */
+  --ember-600: #A84A2C;
+  --ember-700: #853A22;
+  --ember-800: #62291A;
+
+  /* ---- Brand primitives — Ink Blue (noble navy) ---- */
+  --ink-50:  #F4F6F8;
+  --ink-100: #E7EBEF;
+  --ink-200: #CDD5DD;
+  --ink-300: #AAB6C2;
+  --ink-400: #7E8C9B;
+  --ink-500: #5B6A7A;
+  --ink-600: #3F4F60;
+  --ink-700: #29384A;
+  --ink-800: #172638;
+  --ink-900: #0F1D2E;
+  --ink-950: #0A1A2F; /* BRAND INK BLUE */
+
+  /* ---- Warm paper neutrals ---- */
+  --paper:      #FAF8F5;
+  --paper-deep: #F3EFEA;
+  --white:      #FFFFFF;
+  --black:      #000000;
+
+  /* ---- Brand gradient (lifted from the mark) ---- */
+  --gradient-brand: linear-gradient(118deg, var(--ember-500) 0%, var(--ember-600) 32%, var(--ink-800) 78%, var(--ink-950) 100%);
+  --gradient-brand-soft: linear-gradient(118deg, var(--ember-400) 0%, var(--ink-900) 100%);
+
+  /* ---- Semantic surfaces ---- */
+  --surface-page:    var(--paper);
+  --surface-card:    var(--white);
+  --surface-sunken:  var(--paper-deep);
+  --surface-inverse: var(--ink-950);
+  --surface-accent:  var(--ember-500);
+  --surface-accent-soft: var(--ember-50);
+
+  /* ---- Semantic text ---- */
+  --text-strong:  var(--ink-950);
+  --text-body:    var(--ink-800);
+  --text-muted:   var(--ink-500);
+  --text-faint:   var(--ink-400);
+  --text-inverse: var(--paper);
+  --text-inverse-muted: var(--ink-300);
+  --text-accent:  var(--ember-600);
+  --text-on-accent: var(--white);
+
+  /* ---- Borders / lines ---- */
+  --border-subtle:  rgba(10, 26, 47, 0.08);
+  --border-default: rgba(10, 26, 47, 0.14);
+  --border-strong:  rgba(10, 26, 47, 0.28);
+  --border-inverse: rgba(255, 255, 255, 0.16);
+  --border-accent:  var(--ember-500);
+
+  /* ---- Accent states ---- */
+  --accent:        var(--ember-500);
+  --accent-hover:  var(--ember-600);
+  --accent-press:  var(--ember-700);
+  --accent-soft:   var(--ember-50);
+
+  /* ---- Status (used sparingly) ---- */
+  --positive: #3E7C5A;
+  --warning:  #C08A2E;
+  --critical: #B23B2E;
+  --focus-ring: rgba(199, 93, 58, 0.45);
+
+  /* ---- Type families (self-hosted via next/font) ---- */
+  --font-display: var(--font-shippori), "Times New Roman", serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- Type scale (tuned major-third) ---- */
+  --text-2xs: 0.6875rem;  /* 11px */
+  --text-xs:  0.75rem;    /* 12px */
+  --text-sm:  0.875rem;   /* 14px */
+  --text-base:1rem;       /* 16px */
+  --text-md:  1.125rem;   /* 18px */
+  --text-lg:  1.375rem;   /* 22px */
+  --text-xl:  1.75rem;    /* 28px */
+  --text-2xl: 2.25rem;    /* 36px */
+  --text-3xl: 3rem;       /* 48px */
+  --text-4xl: 4rem;       /* 64px */
+  --text-5xl: 5.25rem;    /* 84px */
+  --text-6xl: 7rem;       /* 112px */
+
+  /* ---- Weights (Hanken Grotesk) ---- */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.04;
+  --leading-snug: 1.18;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* ---- Letter spacing ---- */
+  --tracking-display: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-eyebrow: 0.22em;
+
+  /* ---- Spacing (4px base) ---- */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 11rem;
+
+  /* ---- Radius — restrained, architectural ---- */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* ---- Borders ---- */
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
+
+  /* ---- Shadows — soft, low, warm-neutral ---- */
+  --shadow-xs: 0 1px 2px rgba(10, 26, 47, 0.05);
+  --shadow-sm: 0 2px 6px rgba(10, 26, 47, 0.06);
+  --shadow-md: 0 8px 24px -8px rgba(10, 26, 47, 0.12);
+  --shadow-lg: 0 24px 56px -20px rgba(10, 26, 47, 0.20);
+  --shadow-ember: 0 14px 40px -16px rgba(199, 93, 58, 0.45);
+  --shadow-inset-hairline: inset 0 0 0 1px var(--border-subtle);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-wide: 1360px;
+  --container-text: 680px;
+  --gutter: 2rem;
+  --gutter-lg: 4rem;
+
+  /* ---- Motion — calm, deliberate. No bounce. ---- */
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 140ms;
+  --duration-base: 240ms;
+  --duration-slow: 480ms;
+  --duration-reveal: 720ms;
+
+  /* ======================================================================
+     Legacy aliases — kept so existing components/modules don't break.
+     (Phase 1–3 migrate consumers onto the semantic tokens above.)
+     ====================================================================== */
+  --ember: var(--ember-500);
   --ember-soft: #e8a98f;
-  --ink: #0a1a2f;
+  --ink: var(--ink-950);
   --ink-deep: #070d16;
   --ivory: #f6f2ec;
   --ivory-deep: #ece5da;
+  --maxw: var(--container-max);
 
-  /* Live mood variables (animated by MoodBackground in Phase 2). Seeded to hero. */
+  /* ======================================================================
+     Live mood variables — animated at runtime by MoodBackground.
+     Seeded to the hero; retuned to the paper/ink/ember arc in Phase 1.
+     ====================================================================== */
   --bg-core: #c75d3a;
   --bg-edge: #0a1a2f;
   --surface-text: #ffffff;
   --surface-accent: #c75d3a;
-
-  --maxw: 1200px;
-  --font-sans: var(--font-inter, system-ui, sans-serif);
 }
 
+/* ============================================================================
+   Base — resets + element defaults
+   (Body stays dark in Phase 0; the warm-paper flip lands in Phase 1.)
+   ========================================================================== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
 body {
   font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
   color: var(--surface-text);
   background: var(--ink-deep);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+
+/* Display headings — Shippori Antique, tightened. Colour is left to the
+   section/surface (currentColor) so dark and light panels both read right. */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+p { text-wrap: pretty; }
+
 a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--ember-200); color: var(--ink-950); }
+
 img, svg { display: block; max-width: 100%; }
+
+/* ============================================================================
+   Brand utilities
+   ========================================================================== */
+.ae-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--text-accent);
+}
+.ae-lead {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+}
+.ae-gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ae-measure { max-width: var(--container-text); }
+.ae-rule { height: 1px; background: var(--border-default); border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
