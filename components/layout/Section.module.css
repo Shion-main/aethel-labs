@@ -12,3 +12,11 @@
 }
 .light { color: var(--ink); }
 .inner { width: 100%; max-width: var(--maxw); margin: 0 auto; }
+
+/* Reduced-motion fallback: the world doesn't slide, so the morphing glow is inert
+   (frozen on the hero/dark palette). Give panels their own solid surfaces so the
+   light editorial panels stay readable in the vertical stack. */
+@media (prefers-reduced-motion: reduce) {
+  .section { background: var(--ink-950); }
+  .light { background: var(--surface-page); }
+}

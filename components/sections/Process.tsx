@@ -5,7 +5,7 @@ import s from "./sections.module.css";
 
 export function Process() {
   return (
-    <Section id="process">
+    <Section id="process" theme="light">
       <Reveal>
         <div>
           <p className={s.eyebrow}>How it goes</p>

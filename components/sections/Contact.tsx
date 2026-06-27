@@ -7,7 +7,7 @@ import s from "./sections.module.css";
 export function Contact() {
   const { heading, body } = content.contact;
   return (
-    <Section id="contact">
+    <Section id="contact" theme="light">
       <Reveal>
         <div>
           <h2 className={s.headline}>{heading}</h2>

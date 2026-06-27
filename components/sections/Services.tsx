@@ -7,7 +7,7 @@ import s from "./sections.module.css";
 export function Services() {
   const { eyebrow, heading, items } = content.services;
   return (
-    <Section id="services">
+    <Section id="services" theme="light">
       {/* Sits still behind the solid Ethos panel; Ethos slides off to reveal it. */}
       <PinBehind index={2} total={10} start={1 / 9} end={2 / 9}>
         <Reveal>

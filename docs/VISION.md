@@ -168,6 +168,37 @@ panel.
    vendored Fontsource `woff2` if needed. Same fonts as the design system, self-hosted, no CDN,
    better LCP. Matches the repo's existing Inter-via-`next/font` setup.
 
+## Inspiration — canals-amsterdam.com (studied 2026-06-28)
+
+The reference that drove the horizontal-scroll instinct. A horizontal, drag-to-navigate
+**WebGL** experience: chaptered ("four-part") cinematic story, near-monochrome (black) ground
+with a **single electric accent** (red), **enormous display type** composited over imagery,
+**hard white wipe-cut** transitions, an editorial rotated-label sidebar.
+
+**Adopt (translated to Aethel's brand):**
+- Push **Shippori display type much bigger**; let headlines overlap panel imagery.
+- **Hard wipe/cut transitions** between panels (the repo once had a `WipePanel.tsx`).
+- **Single-accent restraint** (ember is our red) — already our rule.
+- **Editorial sidebar** with vertical labels — the `SideNav` already leans this way.
+- Light **parallax** (near/far layers at different scroll speeds) for depth — cheap, on-stack.
+
+**Diverge (deliberately not canals):**
+- **Warm-paper + dark bands**, not black + electric red. (Mood reconfirmed after seeing canals.)
+- **Crisp SVG + GSAP**, not WebGL (see rendering decision below).
+
+### Rendering decision — SVG + GSAP now; WebGL deferred
+
+**Decided:** build in **crisp SVG + GSAP**. WebGL is **not** part of the core build. Reasons:
+the build-spine is geometric (SVG is its natural medium; WebGL would only decorate the
+atmosphere, not improve the mark assembly); WebGL's worth can only be judged against the real
+site, not a mockup; SVG keeps text real/fast/theme-able/accessible (the "read and booked" job);
+and because we keep real DOM/SVG, a WebGL layer stays cleanly additive later — deferring forfeits
+nothing.
+
+**Optional Phase 6 (only greenlit after the real site exists):** a **hybrid WebGL atmosphere
+layer** rendered *behind* the readable foreground (richer build-spine backdrop / shader color /
+fluid imagery), never the foreground. Prototype the hero first before committing.
+
 ## All threads resolved — ready to plan
 
 Every open question is now decided. The next artifact is an **implementation plan** (phased),
