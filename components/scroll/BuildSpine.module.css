@@ -1,0 +1,54 @@
+/* The build-spine: a persistent ghost frame-mark behind the content that builds
+   across the whole scroll — outline (frames) -> fill (shapes) -> ember (color) ->
+   resolves crisp at the end. Fixed, behind the panels, color-adapts per surface. */
+.spine {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.svg {
+  width: min(82vh, 70vw);
+  height: auto;
+  color: var(--surface-text, #fff);
+  opacity: var(--spine-op, 0.05);
+  transform: translateX(9vw) scale(var(--spine-scale, 0.92));
+  transform-origin: center;
+  transition: opacity 220ms linear, color 400ms ease;
+  will-change: opacity, transform;
+}
+
+/* Stage 1 — frames: the outline draws itself (pathLength normalised to 1). */
+.stroke path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 13;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--draw, 0));
+  stroke-opacity: var(--strokeop, 1); /* fades out as the shape fills in */
+}
+
+/* Stage 2 — shapes: a flat fill in the surface colour fades in. */
+.flat path {
+  stroke: none;
+  fill: currentColor;
+  fill-opacity: var(--filln, 0);
+}
+
+/* Stage 3 — colour: the brand gradient crossfades over the flat fill. */
+.grad path {
+  stroke: none;
+  fill: url(#aeSpineGrad);
+  fill-opacity: var(--fillc, 0);
+}
+
+/* Reduced motion / no scroll: show the resolved mark statically. */
+@media (prefers-reduced-motion: reduce) {
+  .svg { --draw: 1; --filln: 0; --fillc: 1; --strokeop: 0; --spine-op: 0.11; --spine-scale: 1; }
+}

@@ -3,6 +3,7 @@ import { useState, type ReactNode } from "react";
 import { SmoothScroll } from "./SmoothScroll";
 import { HorizontalTrack } from "./HorizontalTrack";
 import { MoodBackground } from "./MoodBackground";
+import { BuildSpine } from "./BuildSpine";
 import { ProgressContext } from "./ProgressContext";
 import { SideNav } from "@/components/nav/SideNav";
 
@@ -12,6 +13,7 @@ export function Experience({ children }: { children: ReactNode }) {
     <SmoothScroll>
       <ProgressContext.Provider value={progress}>
         <MoodBackground progress={progress} />
+        <BuildSpine progress={progress} />
         <HorizontalTrack onProgress={setProgress}>{children}</HorizontalTrack>
         <SideNav />
       </ProgressContext.Provider>
