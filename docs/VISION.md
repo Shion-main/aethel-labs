@@ -199,6 +199,25 @@ nothing.
 layer** rendered *behind* the readable foreground (richer build-spine backdrop / shader color /
 fluid imagery), never the foreground. Prototype the hero first before committing.
 
+### Phase 6 blueprint — the 14islands progressive-enhancement pattern
+
+References the user surfaced (studied 2026-06-28): **14islands.com** (HTML-first, editorial, huge
+type; the studio behind the approach) and **podium.global** (WebGL-first; a 57→82% preloader and a
+blank render when WebGL doesn't init — the cautionary model). Article:
+*Progressive Enhancement with WebGL and React* (14islands).
+
+The pattern, which fits our stack (React 19 + Lenis already in place):
+- **DOM/SVG site is the source of truth** — built first, works with no JS and no WebGL.
+- **One shared, persistent `<canvas>` behind the DOM.** Components opt in (a `useCanvas()`-style
+  hook); the canvas survives route changes.
+- **"Proxy" DOM elements drive the WebGL scene** — the canvas reads DOM element rects and
+  scroll, positions its 3D content to match, with easing for smoothness. Library lineage:
+  `@14islands/r3f-scroll-rig` (react-three-fiber + smooth scroll).
+- **Fallback ladder:** no-JS → readable content · no-WebGL → CSS/hover states · WebGL → full effects.
+- **Guardrails (their words):** *"if load time and maximum device support is your highest
+  priority, you shouldn't use WebGL at all"*; virtual scroll needed for smooth sync hurts a11y;
+  watch image-load scroll-jank. So: enhancement only, never the foundation; measure before/after.
+
 ## All threads resolved — ready to plan
 
 Every open question is now decided. The next artifact is an **implementation plan** (phased),

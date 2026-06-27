@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, Geist_Mono, Shippori_Antique } from "next/font/google";
 import "./globals.css";
+import "@/components/ui/aethel-ui.css";
 
 // Body / UI — modern grotesque (variable, 300–800).
 const hanken = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });

@@ -1,0 +1,112 @@
+/* ============================================================================
+   Aethel Labs — UI primitives (ported from the design system).
+   Global `ae-*` classes; tokens come from app/globals.css. Imported once in
+   app/layout.tsx. Button / Card / form controls live here; Tag + Eyebrow are
+   inline-styled in their components.
+   ========================================================================== */
+
+/* ---- Button ---- */
+.ae-btn{
+  --_pad-y: 0.7em; --_pad-x: 1.4em; --_fs: var(--text-sm);
+  display:inline-flex; align-items:center; justify-content:center; gap:0.6em;
+  font-family:var(--font-sans); font-size:var(--_fs); font-weight:var(--weight-semibold);
+  letter-spacing:0.01em; line-height:1; text-decoration:none; cursor:pointer;
+  padding:var(--_pad-y) var(--_pad-x); border-radius:var(--radius-md);
+  border:1.5px solid transparent; background:transparent; color:var(--text-strong);
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+  -webkit-tap-highlight-color:transparent;
+}
+.ae-btn:hover{ text-decoration:none; }
+.ae-btn:active{ transform:translateY(1px); }
+.ae-btn:focus-visible{ outline:none; box-shadow:0 0 0 3px var(--focus-ring); }
+.ae-btn[disabled]{ opacity:0.45; cursor:not-allowed; transform:none; }
+.ae-btn__icon{ display:inline-flex; width:1.1em; height:1.1em; }
+.ae-btn__icon svg{ width:100%; height:100%; }
+.ae-btn--block{ display:flex; width:100%; }
+
+.ae-btn--sm{ --_pad-y:0.55em; --_pad-x:1.05em; --_fs:var(--text-xs); }
+.ae-btn--md{ --_pad-y:0.72em; --_pad-x:1.45em; --_fs:var(--text-sm); }
+.ae-btn--lg{ --_pad-y:0.95em; --_pad-x:1.9em; --_fs:var(--text-md); border-radius:var(--radius-lg); }
+
+.ae-btn--primary{ background:var(--accent); color:var(--text-on-accent); border-color:var(--accent); }
+.ae-btn--primary:hover{ background:var(--accent-hover); border-color:var(--accent-hover); box-shadow:var(--shadow-ember); }
+.ae-btn--primary:active{ background:var(--accent-press); border-color:var(--accent-press); box-shadow:none; }
+
+.ae-btn--secondary{ background:transparent; color:var(--text-strong); border-color:var(--border-strong); }
+.ae-btn--secondary:hover{ background:var(--ink-950); color:var(--paper); border-color:var(--ink-950); }
+.ae-btn--secondary:active{ background:var(--ink-800); border-color:var(--ink-800); }
+
+.ae-btn--ghost{ background:transparent; color:var(--text-body); border-color:transparent; }
+.ae-btn--ghost:hover{ background:var(--surface-sunken); color:var(--text-strong); }
+
+.ae-btn--link{ padding:0; border:0; border-radius:0; color:var(--text-accent); }
+.ae-btn--link:hover{ color:var(--accent-hover); text-decoration:underline; text-underline-offset:4px; }
+
+.ae-btn--inverse{ background:var(--paper); color:var(--ink-950); border-color:var(--paper); }
+.ae-btn--inverse:hover{ background:#fff; box-shadow:var(--shadow-lg); }
+
+/* ---- Card ---- */
+.ae-card{
+  display:block; position:relative; text-decoration:none; color:var(--text-body);
+  background:var(--surface-card); border:1px solid var(--border-subtle);
+  border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+}
+.ae-card--pad-sm{ padding:var(--space-4); }
+.ae-card--pad-md{ padding:var(--space-5); }
+.ae-card--pad-lg{ padding:var(--space-6); }
+.ae-card--pad-none{ padding:0; }
+
+.ae-card--outline{ box-shadow:none; border-color:var(--border-default); }
+.ae-card--sunken{ background:var(--surface-sunken); box-shadow:none; border-color:transparent; }
+.ae-card--inverse{ background:var(--ink-950); border-color:var(--border-inverse); color:var(--text-inverse-muted); box-shadow:none; }
+
+.ae-card--interactive{ cursor:pointer; }
+.ae-card--interactive:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:var(--border-default); }
+.ae-card--interactive:active{ transform:translateY(-1px); }
+.ae-card--interactive::after{
+  content:""; position:absolute; left:0; right:0; top:0; height:3px;
+  background:var(--gradient-brand); border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  opacity:0; transition:opacity var(--duration-base) var(--ease-out);
+}
+.ae-card--interactive:hover::after{ opacity:1; }
+.ae-card--inverse.ae-card--interactive:hover{ border-color:var(--ember-500); }
+
+/* ---- Form fields (Input / Textarea / Select) ---- */
+.ae-field{ display:flex; flex-direction:column; gap:0.5rem; }
+.ae-field__label{
+  font-family:var(--font-sans); font-size:var(--text-sm); font-weight:var(--weight-semibold);
+  color:var(--text-strong); letter-spacing:-0.005em;
+}
+.ae-field__req{ color:var(--accent); margin-left:0.2em; }
+.ae-field__hint{ font-family:var(--font-sans); font-size:var(--text-xs); color:var(--text-muted); }
+.ae-field__hint--error{ color:var(--critical); }
+
+.ae-control{
+  font-family:var(--font-sans); font-size:var(--text-base); color:var(--text-strong);
+  background:var(--surface-card); border:1.5px solid var(--border-default);
+  border-radius:var(--radius-md); padding:0.7em 0.85em; width:100%;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+.ae-control::placeholder{ color:var(--text-faint); }
+.ae-control:hover{ border-color:var(--border-strong); }
+.ae-control:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--focus-ring); }
+.ae-control:disabled{ background:var(--surface-sunken); color:var(--text-muted); cursor:not-allowed; }
+.ae-control--invalid{ border-color:var(--critical); }
+.ae-control--invalid:focus{ box-shadow:0 0 0 3px rgba(178,59,46,0.25); }
+textarea.ae-control{ resize:vertical; min-height:7em; line-height:var(--leading-normal); }
+
+.ae-select-wrap{ position:relative; display:block; }
+.ae-select-wrap select.ae-control{ appearance:none; -webkit-appearance:none; padding-right:2.4em; cursor:pointer; }
+.ae-select-wrap__chev{
+  position:absolute; right:0.9em; top:50%; transform:translateY(-50%);
+  width:0.7em; height:0.7em; pointer-events:none; color:var(--text-muted);
+}
