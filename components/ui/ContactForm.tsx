@@ -7,13 +7,32 @@ const NEEDS = ["Brand Identity", "Landing Page", "Website", "Content Engine", "N
 export function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", type: NEEDS[0], brief: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  // Phase 5 wires this to /api/contact (Resend). For now it confirms locally.
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? "Could not send right now. Please try again.");
+      }
+    } catch {
+      setError("Could not send right now. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -38,8 +57,13 @@ export function ContactForm() {
           </div>
           <Select label="What do you need?" options={NEEDS} value={form.type} onChange={set("type")} id="c-type" />
           <Textarea label="Tell me about it" rows={4} placeholder="A new brand, a site that's overdue, a feed that's gone quiet…" value={form.brief} onChange={set("brief")} id="c-brief" />
+          {error ? (
+            <p role="alert" style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--critical)" }}>{error}</p>
+          ) : null}
           <div style={{ marginTop: "var(--space-1)" }}>
-            <Button variant="primary" size="lg" type="submit">Start a project</Button>
+            <Button variant="primary" size="lg" type="submit" disabled={sending}>
+              {sending ? "Sending…" : "Start a project"}
+            </Button>
           </div>
         </form>
       )}

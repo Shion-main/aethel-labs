@@ -208,6 +208,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* kill stray horizontal scroll from full-bleed background art (esp. the
+     vertical-stack fallback); the desktop pin uses its own clipped viewport. */
+  overflow-x: clip;
 }
 
 /* Display headings — Shippori Antique, tightened. Colour is left to the

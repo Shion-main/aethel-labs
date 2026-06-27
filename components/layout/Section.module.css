@@ -13,10 +13,10 @@
 .light { color: var(--ink); }
 .inner { width: 100%; max-width: var(--maxw); margin: 0 auto; }
 
-/* Reduced-motion fallback: the world doesn't slide, so the morphing glow is inert
-   (frozen on the hero/dark palette). Give panels their own solid surfaces so the
-   light editorial panels stay readable in the vertical stack. */
-@media (prefers-reduced-motion: reduce) {
-  .section { background: var(--ink-950); }
+/* Vertical-stack fallback (reduced-motion / narrow / touch): the world doesn't
+   slide, so the morphing glow is inert (frozen on the hero/dark palette). Give
+   panels their own solid surfaces so the light editorial panels stay readable. */
+@media (prefers-reduced-motion: reduce), (max-width: 820px), (pointer: coarse) {
+  .section { background: var(--ink-950); min-height: auto; padding: 14vh 7vw; overflow: hidden; }
   .light { background: var(--surface-page); }
 }

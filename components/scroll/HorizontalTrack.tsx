@@ -19,10 +19,14 @@ export function HorizontalTrack({
 
   useGSAP(
     () => {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce || !track.current || !viewport.current) {
+      // Bail out of the horizontal pin for reduced-motion, narrow, or touch
+      // viewports — the CSS falls back to a readable vertical stack.
+      const bail = window.matchMedia(
+        "(prefers-reduced-motion: reduce), (max-width: 820px), (pointer: coarse)"
+      ).matches;
+      if (bail || !track.current || !viewport.current) {
         onProgress?.(0);
-        return; // vertical fallback handled by CSS (Task 4.x)
+        return;
       }
       const distance = track.current.scrollWidth - window.innerWidth;
       gsap.to(track.current, {
