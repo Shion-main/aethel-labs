@@ -1,6 +1,7 @@
 import { Section } from "@/components/layout/Section";
 import { content } from "@/lib/content";
 import { Reveal } from "@/components/layout/Reveal";
+import { SectionHead } from "./SectionHead";
 import s from "./sections.module.css";
 
 export function Process() {
@@ -8,12 +9,12 @@ export function Process() {
     <Section id="process" theme="light">
       <Reveal>
         <div>
-          <p className={s.eyebrow}>How it goes</p>
-          <h2 className={s.headline}>Four steps, no mystery.</h2>
+          <SectionHead eyebrow="How it goes" heading="Four steps, no mystery." />
           <ol className={s.steps}>
             {content.process.map((step) => (
-              <li key={step.n} className={s.card}>
-                <div className={s.cardTitle}>{String(step.n).padStart(2, "0")} · {step.title}</div>
+              <li key={step.n} className={s.step}>
+                <span className={s.stepNum}>{String(step.n).padStart(2, "0")}</span>
+                <h3 className={s.stepTitle}>{step.title}</h3>
                 <p className={s.cardBody}>{step.body}</p>
               </li>
             ))}

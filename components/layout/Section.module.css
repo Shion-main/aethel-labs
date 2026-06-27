@@ -5,7 +5,7 @@
   align-items: center;
   padding: 6vh 8vw;
   /* clear the fixed sidebar on the right so content never slides under it */
-  padding-right: max(8vw, 96px);
+  padding-right: max(9vw, 132px);
   color: var(--surface-text);
   /* smooths the per-section text-colour change (driven discretely, not per-frame) */
   transition: color 400ms ease;

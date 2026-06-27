@@ -2,7 +2,7 @@ export interface CTA { label: string; href: string; variant: "primary" | "ghost"
 export interface Service { title: string; body: string; tag?: string; }
 export interface Project { name: string; kind: string; body: string; live?: boolean; image?: string; }
 export interface Step { n: number; title: string; body: string; }
-export interface Package { name: string; what: string; price: string; }
+export interface Package { name: string; what: string; price: string; unit?: string; features: string[]; featured?: boolean; }
 
 export const content = {
   nav: {
@@ -29,9 +29,9 @@ export const content = {
     eyebrow: "What we do",
     heading: "Three ways in.",
     items: [
-      { title: "Brand Identity", body: "A logo, a palette, a voice — the whole identity, built to be remembered. The foundation everything else stands on." },
-      { title: "Websites & Landing Pages", body: "Fast, modern sites that look the way your business deserves to look. Built on the same stack the big names run on — shipped in days, not months." },
-      { title: "The Content Engine", tag: "monthly", body: "A subscription that keeps your brand alive online. On-brand content, produced and delivered every month, so your feed never goes quiet between posts." },
+      { title: "Brand Identity", tag: "Identity", body: "A logo, a palette, a voice — the whole identity, built to be remembered. The foundation everything else stands on." },
+      { title: "Websites & Landing Pages", tag: "Build", body: "Fast, modern sites that look the way your business deserves to look. Built on the same stack the big names run on — shipped in days, not months." },
+      { title: "The Content Engine", tag: "Monthly", body: "A subscription that keeps your brand alive online. On-brand content, produced and delivered every month, so your feed never goes quiet between posts." },
     ] as Service[],
   },
   frame: {
@@ -54,9 +54,12 @@ export const content = {
     { n: 4, title: "Sustain", body: "Optional: we keep it alive — content, updates, the things that go stale if no one tends them." },
   ] as Step[],
   packages: [
-    { name: "Landing Page", what: "A single, high-craft page that converts", price: "From ₱___" },
-    { name: "Brand Identity", what: "Logo, palette, type, and a usage guide", price: "From ₱___" },
-    { name: "Content Engine", what: "A month of on-brand content, every month", price: "₱___ /mo" },
+    { name: "Landing Page", what: "A single, high-craft page that converts.", price: "₱___", unit: "",
+      features: ["One page, fully bespoke", "Copy + design + build", "Shipped in days"] },
+    { name: "Brand Identity", what: "Logo, palette, type, and a usage guide.", price: "₱___", unit: "", featured: true,
+      features: ["Full visual identity", "Logo + marks + palette", "Usage guidelines"] },
+    { name: "Content Engine", what: "A month of on-brand content, every month.", price: "₱___", unit: "/mo",
+      features: ["On-brand monthly content", "Produced + delivered", "Cancel anytime"] },
   ] as Package[],
   about: {
     eyebrow: "The studio",

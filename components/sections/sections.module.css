@@ -1,45 +1,155 @@
-.eyebrow { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; margin-bottom: 18px; }
-.heroText { max-width: 56ch; }
-.headline { font-size: clamp(34px, 6vw, 72px); line-height: 1.08; letter-spacing: -0.02em; white-space: pre-line; font-weight: 700; text-wrap: balance; }
-.statement { font-size: clamp(24px, 3.4vw, 44px); line-height: 1.24; letter-spacing: -0.01em; font-weight: 600; max-width: 26ch; text-wrap: balance; }
+/* ============================================================================
+   Aethel Labs — section layouts (Phase 3 rebuild).
+   Editorial, type-forward. Each section is one 100vw x 100vh horizontal panel,
+   so layouts stay compact enough to fit a viewport. Components use the ui/
+   primitives (Button/Card/Tag/Eyebrow) for chrome; these classes own layout +
+   the big display type.
+   ========================================================================== */
 
-/* Ethos (Pitch) rides ABOVE Services so its solid panel covers Services, which
-   sits pinned behind it and is uncovered as Ethos slides off to the left. */
+/* ---- Shared section head ---- */
+.head { max-width: 34rem; }
+.headWide { max-width: 26rem; }
+.eyebrow { margin-bottom: var(--space-4); }
+.intro {
+  margin-top: var(--space-5); font-size: var(--text-md);
+  line-height: var(--leading-relaxed); color: var(--text-muted); max-width: 56ch;
+}
+
+/* ---- Display type ---- */
+.display {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(34px, 5vw, 68px); line-height: 1.0;
+  letter-spacing: -0.03em; white-space: pre-line; text-wrap: balance;
+}
+.headline {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(30px, 4.2vw, 58px); line-height: 1.04;
+  letter-spacing: -0.025em; text-wrap: balance;
+}
+.statement {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(26px, 3.7vw, 48px); line-height: 1.16;
+  letter-spacing: -0.02em; max-width: 22ch; text-wrap: balance;
+}
+.accent { color: var(--surface-accent); }
+
+/* ---- Hero ---- */
+.heroText { max-width: 36rem; }
+.heroSub {
+  margin-top: var(--space-5); max-width: 54ch; font-size: var(--text-md);
+  line-height: var(--leading-relaxed); color: var(--text-inverse-muted);
+}
+.ctas { display: flex; gap: var(--space-3); margin-top: var(--space-6); flex-wrap: wrap; }
+
+/* ---- Ethos (Pitch) blocking panel ---- */
 :global(#pitch) { z-index: 3; }
 :global(#services) { z-index: 2; }
-
-/* Pitch section background — SOLID opaque panel (covers the mood gradient) */
 .pitchBg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; background: #0b0b0d; }
 .pitchBg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(58% 80% at 24% 60%, rgba(199, 93, 58, 0.12), transparent 68%);
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(58% 80% at 24% 60%, rgba(199, 93, 58, 0.14), transparent 68%);
 }
 .pitchWatermark {
-  position: absolute;
-  left: -8vw;
-  bottom: -10vh;
-  width: 46vw;
-  max-width: 660px;
-  opacity: 0.06;
-  filter: blur(1px);
+  position: absolute; left: -8vw; bottom: -10vh; width: 46vw; max-width: 660px;
+  opacity: 0.06; filter: blur(1px);
 }
-.sub { font-size: clamp(16px, 2vw, 20px); max-width: 46ch; margin-top: 20px; opacity: 0.9; line-height: 1.5; }
-.ctas { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
-.btn { padding: 12px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background 400ms ease; }
-.btn:active { transform: scale(0.97); }
-.primary { background: var(--surface-accent); color: #fff; }
-.ghost { border: 1px solid currentColor; }
-.grid3 { display: grid; gap: 22px; grid-template-columns: repeat(3, 1fr); margin-top: 40px; }
-.card { padding: 26px; border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 14px; }
-.cardTitle { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
-.cardBody { opacity: 0.85; line-height: 1.5; }
-.workGrid { display: grid; gap: 26px; grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
-.table { width: 100%; border-collapse: collapse; margin-top: 32px; }
-.table td, .table th { text-align: left; padding: 16px 12px; border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent); }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; list-style: none; }
-.footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; width: 100%; }
+
+/* ---- Services ---- */
+.serviceGrid {
+  margin-top: var(--space-6); display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);
+}
+.cardHead { display: flex; justify-content: space-between; align-items: flex-start; }
+.cardNum { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-faint); }
+.cardTitle {
+  margin-top: var(--space-5); font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(22px, 1.7vw, 27px); letter-spacing: -0.02em; line-height: 1.1;
+}
+.cardBody { margin-top: var(--space-3); font-size: var(--text-sm); line-height: var(--leading-relaxed); color: var(--text-muted); }
+
+/* ---- Approach / Frame (split) ---- */
+.split {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--space-8); align-items: center; width: 100%;
+}
+.splitBody { margin-top: var(--space-5); max-width: 46ch; font-size: var(--text-md);
+  line-height: var(--leading-relaxed); color: var(--text-inverse-muted); }
+.frameArt { position: relative; display: flex; justify-content: center; }
+.frameGlow {
+  position: absolute; inset: -20%;
+  background: radial-gradient(circle, rgba(199,93,58,0.22) 0%, rgba(199,93,58,0) 60%);
+}
+
+/* ---- Work ---- */
+.workGrid {
+  margin-top: var(--space-6); display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5);
+}
+.workThumb {
+  height: 100px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; position: relative; overflow: hidden;
+}
+.workThumbMark { position: absolute; right: -10px; bottom: -10px; width: 110px; opacity: 0.16; }
+.workLive { position: absolute; top: 14px; left: 14px; }
+.workMeta { padding: var(--space-4) var(--space-5) var(--space-5); }
+.workName { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 1.5vw, 24px); letter-spacing: -0.02em; }
+.workTags { margin-top: var(--space-2); display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+/* ---- Process ---- */
+.steps {
+  margin-top: var(--space-6); display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-5); list-style: none;
+}
+.step { padding-top: var(--space-4); border-top: 2px solid var(--ink-950); }
+.stepNum { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-accent); }
+.stepTitle { margin-top: var(--space-3); font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 1.7vw, 27px); letter-spacing: -0.02em; }
+
+/* ---- Packages (pricing cards) ---- */
+.pkgGrid {
+  margin-top: var(--space-6); display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); align-items: stretch;
+}
+.pkg { display: flex; flex-direction: column; height: 100%; }
+.pkgHead { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.pkgName { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 1.5vw, 24px); letter-spacing: -0.02em; }
+.pkgWhat { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--text-muted); }
+.pkgPriceRow { margin-top: var(--space-5); display: flex; align-items: baseline; gap: 6px; }
+.pkgFrom { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-faint); }
+.pkgPrice { font-family: var(--font-display); font-weight: 400; font-size: 38px; letter-spacing: -0.02em; }
+.pkgUnit { font-size: var(--text-sm); color: var(--text-muted); }
+.pkgFeat { list-style: none; margin: var(--space-5) 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pkgFeatItem { display: flex; gap: 10px; align-items: flex-start; font-size: var(--text-sm); }
+.pkgCheck { flex: none; margin-top: 3px; color: var(--ember-500); }
+.pkgCta { margin-top: var(--space-5); }
+.pkgNote { margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint); }
+
+/* ---- Contact (split) ---- */
+.contactGrid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-8); align-items: start; width: 100%; }
+.contactMeta { margin-top: var(--space-6); display: flex; flex-direction: column; gap: 10px; }
+.contactLink { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-body); }
+
+/* ---- About ---- */
+.aboutBody { margin-top: var(--space-5); max-width: 58ch; font-size: var(--text-md); line-height: var(--leading-relaxed); color: var(--text-inverse-muted); }
+.aboutBody em { color: var(--ember-400); font-style: italic; }
+.aboutBody strong { color: var(--paper); font-weight: 600; }
+
+/* ---- Footer ---- */
+.footerWrap { display: flex; flex-direction: column; gap: var(--space-8); width: 100%; }
+.footerTop { display: flex; flex-wrap: wrap; gap: var(--space-7); justify-content: space-between; align-items: flex-start; }
+.footerTag { margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-md); color: var(--paper); }
+.footCols { display: flex; gap: var(--space-8); flex-wrap: wrap; }
+.footColTitle { font-family: var(--font-mono); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: 0.18em; color: var(--ember-400); margin-bottom: 14px; }
+.footList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.footList a { color: var(--ink-200); font-size: var(--text-sm); }
+.footerBottom {
+  padding-top: var(--space-5); border-top: 1px solid var(--border-inverse);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-family: var(--font-mono); font-size: var(--text-xs); color: var(--ink-400);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .split, .contactGrid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .frameArt { display: none; }
+}
 @media (max-width: 820px) {
-  .grid3, .workGrid, .steps { grid-template-columns: 1fr; }
+  .serviceGrid, .workGrid, .steps, .pkgGrid { grid-template-columns: 1fr; }
 }
